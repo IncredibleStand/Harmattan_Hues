@@ -1,0 +1,1305 @@
+/* ================================================================
+   HARMATTAN HUES PUBLISHING LTD — style.css
+   Design System : Warm Minimalism
+   ZERO-GAP POLICY: The CSS `gap` property is never used.
+   All spacing is handled via explicit margin and padding only.
+================================================================ */
+
+/* ----------------------------------------------------------------
+   1. Design Tokens
+---------------------------------------------------------------- */
+:root {
+  --color-bg:          #FDFBF7;
+  --color-bg-alt:      #F5F1EA;
+  --color-text:        #2A2A2A;
+  --color-text-muted:  #7A736A;
+  --color-accent:      #C86A45;
+  --color-accent-dark: #A85535;
+  --color-rule:        #E2DAD0;
+  --color-white:       #FFFFFF;
+
+  --font-serif: 'Lora', Georgia, 'Times New Roman', serif;
+  --font-sans:  'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  7rem;
+  --space-xxl: 10rem;
+
+  --container-max: 1180px;
+  --container-pad: clamp(1.5rem, 5vw, 4rem);
+
+  --nav-height: 74px;
+
+  --transition-base:  0.28s ease;
+  --transition-menu:  0.45s cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+/* ----------------------------------------------------------------
+   2. Reset & Base
+---------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Prevent scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----------------------------------------------------------------
+   3. Container Helper
+---------------------------------------------------------------- */
+.nav-inner,
+.hero-inner,
+.section-header,
+.book-grid,
+.catalog-cta,
+.pull-quote-inner,
+.about-inner,
+.submissions-inner,
+.footer-inner {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+/* ----------------------------------------------------------------
+   4. Typography
+---------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+.section-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-sm);
+}
+
+.section-heading {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  margin-bottom: var(--space-sm);
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 55ch;
+  line-height: 1.8;
+}
+
+/* ----------------------------------------------------------------
+   5. Buttons
+---------------------------------------------------------------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  padding: 0.85rem 2.25rem;
+  border-radius: 2px;
+}
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  background-color: var(--color-accent-dark);
+  box-shadow: 0 4px 20px rgba(200, 106, 69, 0.28);
+  outline: none;
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-text);
+  padding: 0.85rem 2.25rem;
+  border-radius: 2px;
+  border: 1.5px solid var(--color-rule);
+}
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  border-color: var(--color-text);
+  outline: none;
+}
+
+.btn--outline {
+  background-color: transparent;
+  color: var(--color-accent);
+  padding: 0.85rem 2.25rem;
+  border-radius: 2px;
+  border: 1.5px solid var(--color-accent);
+}
+.btn--outline:hover,
+.btn--outline:focus-visible {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  outline: none;
+}
+
+/* ----------------------------------------------------------------
+   6. Navigation Bar
+---------------------------------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: var(--nav-height);
+  background-color: rgba(253, 251, 247, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base);
+}
+
+.site-header.scrolled {
+  border-bottom-color: var(--color-rule);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  position: relative; /* Added to constrain the absolute logo */
+}
+
+/* Desktop link groups */
+.nav-links {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+.nav-links--left  { justify-content: flex-start; }
+.nav-links--right { justify-content: flex-end; }
+
+.nav-links--left  li + li { margin-left: 2.5rem; }
+.nav-links--right li + li { margin-left: 2.5rem; }
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--transition-base);
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--color-accent);
+  transition: width var(--transition-base);
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-text);
+  outline: none;
+}
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+/* Position the brand container to hang over the hero */
+.brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 1rem;
+  z-index: 220; 
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 0;
+  transition: top var(--transition-base);
+}
+
+.brand:hover { 
+  opacity: 0.9; 
+}
+
+/* Make the logo huge so it spans the space */
+.brand-logo {
+  height: auto;
+  max-height: 150px; /* Adjust this to make the logo larger or smaller */
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 12px rgba(42, 42, 42, 0.06));
+  transition: max-height var(--transition-base);
+}
+
+/* Bonus: Shrink the logo elegantly when the user scrolls down */
+.site-header.scrolled .brand {
+  top: 0;
+  height: var(--nav-height);
+  align-items: center;
+}
+.site-header.scrolled .brand-logo {
+  max-height: 48px;
+}
+
+/* ── Hamburger button ── */
+.nav-toggle {
+  display: none;          /* hidden on desktop */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 210;           /* above mobile-menu overlay */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transition:
+    transform var(--transition-base),
+    opacity   var(--transition-base),
+    top       var(--transition-base);
+}
+
+/* Resting state */
+.bar-top { top: 14px; }
+.bar-mid { top: 21px; }
+.bar-bot { top: 28px; }
+
+/* Open (X) state */
+.nav-toggle.is-open .bar-top {
+  top: 21px;
+  transform: translateX(-50%) rotate(45deg);
+}
+.nav-toggle.is-open .bar-mid {
+  opacity: 0;
+  transform: translateX(-50%) scaleX(0);
+}
+.nav-toggle.is-open .bar-bot {
+  top: 21px;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+/* ----------------------------------------------------------------
+   7. Full-Screen Mobile Menu
+---------------------------------------------------------------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 190;
+  background-color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--nav-height);
+  padding-bottom: 3rem;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+
+  /* Hidden by default */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-12px);
+  transition:
+    opacity    var(--transition-menu),
+    visibility var(--transition-menu),
+    transform  var(--transition-menu);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-nav {
+  width: 100%;
+  max-width: 440px;
+  text-align: center;
+}
+
+.mobile-nav-list {
+  margin-bottom: 3.5rem;
+}
+
+.mobile-nav-item {
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.mobile-nav-item:first-child {
+  border-top: 1px solid var(--color-rule);
+}
+
+.mobile-nav-link {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 500;
+  color: var(--color-text);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  letter-spacing: -0.01em;
+  transition: color var(--transition-base);
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-accent);
+}
+
+/* Stagger animation for each link when menu opens */
+.mobile-menu.is-open .mobile-nav-item:nth-child(1) .mobile-nav-link {
+  animation: linkReveal 0.4s ease 0.10s both;
+}
+.mobile-menu.is-open .mobile-nav-item:nth-child(2) .mobile-nav-link {
+  animation: linkReveal 0.4s ease 0.18s both;
+}
+.mobile-menu.is-open .mobile-nav-item:nth-child(3) .mobile-nav-link {
+  animation: linkReveal 0.4s ease 0.26s both;
+}
+.mobile-menu.is-open .mobile-nav-item:nth-child(4) .mobile-nav-link {
+  animation: linkReveal 0.4s ease 0.34s both;
+}
+
+@keyframes linkReveal {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-menu-footer {
+  margin-top: 0;
+}
+
+.mobile-menu-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.mobile-menu-address {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* ----------------------------------------------------------------
+   8. Hero Section
+---------------------------------------------------------------- */
+.hero {
+  position: relative;
+  height: 100svh; /* Forces it to fit exactly in the viewport height */
+  min-height: 650px; /* Safe minimum for very small mobile screens */
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--nav-height) + 7rem); /* Clears the giant hanging logo */
+  padding-bottom: 2rem; /* Reduced to prevent unnecessary scrolling */
+  overflow: hidden;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.1s forwards;
+}
+
+.hero-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin-bottom: 1rem; /* Reduced from 2rem */
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.25s forwards;
+}
+
+.hero-subheadline {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.85;
+  margin-bottom: 2rem; /* Reduced from 3rem */
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.4s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.9s ease 0.55s forwards;
+}
+
+.hero-actions .btn {
+  margin-left: 0.65rem;
+  margin-right: 0.65rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Decorative page rules */
+.hero-rule {
+  position: absolute;
+  left: var(--container-pad);
+  right: var(--container-pad);
+  height: 1px;
+  background-color: var(--color-rule);
+}
+.hero-rule--top    { top: calc(var(--nav-height) + 1.5rem); }
+.hero-rule--bottom { bottom: var(--space-lg); }
+
+/* ── Hero centered logo (Replaces the background watermark) ── */
+.hero-logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem; /* Maintains the Zero-Gap policy */
+}
+
+.hero-hero-logo {
+  height: 90px; /* Adjust this value to make the logo larger or smaller */
+  width: auto;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  animation: logoHeroReveal 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes logoHeroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Update your existing hero text animations 
+   to stagger slightly behind the new logo entrance 
+*/
+.hero-eyebrow {
+  /* Keep existing properties */
+  animation: fadeUp 0.9s ease 0.2s forwards; /* Updated delay */
+}
+
+.hero-headline {
+  /* Keep existing properties */
+  animation: fadeUp 0.9s ease 0.35s forwards; /* Updated delay */
+}
+
+.hero-subheadline {
+  /* Keep existing properties */
+  animation: fadeUp 0.9s ease 0.5s forwards; /* Updated delay */
+}
+
+.hero-actions {
+  /* Keep existing properties */
+  animation: fadeUp 0.9s ease 0.65s forwards; /* Updated delay */
+}
+
+/* ----------------------------------------------------------------
+   9. Marquee Strip
+---------------------------------------------------------------- */
+.marquee-wrap {
+  overflow: hidden;
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: var(--color-bg-alt);
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  animation: marqueeScroll 10s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+  cursor: pointer;
+}
+
+.marquee-track span {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+.marquee-dot {
+  color: var(--color-accent) !important;
+  font-size: 1rem !important;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ----------------------------------------------------------------
+   10. Featured Catalog
+---------------------------------------------------------------- */
+.catalog {
+  padding-top: var(--space-xxl);
+  padding-bottom: var(--space-xl);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.section-header .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.75rem;
+}
+
+/* Book grid — flex wrap, no gap */
+.book-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.book-card {
+  flex: 0 0 calc(25% - 2.5rem);
+  max-width: 240px;
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+  margin-bottom: 3rem;
+  transition: transform var(--transition-base);
+}
+
+.book-card:hover {
+  transform: translateY(-6px);
+}
+
+.book-cover {
+  position: relative;
+  width: 100%;
+  padding-bottom: 148%;
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 6px rgba(42, 42, 42, 0.08),
+    0 8px 28px rgba(42, 42, 42, 0.12),
+    4px 0 0 0 rgba(0, 0, 0, 0.15) inset;
+  transition: box-shadow var(--transition-base);
+}
+
+.book-card:hover .book-cover {
+  box-shadow:
+    0 6px 18px rgba(42, 42, 42, 0.12),
+    0 20px 48px rgba(42, 42, 42, 0.16),
+    4px 0 0 0 rgba(0, 0, 0, 0.2) inset;
+}
+
+.cover-texture {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.02) 3px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+  pointer-events: none;
+}
+
+.cover-ornament {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  color: rgba(255, 255, 255, 0.18);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.book-meta {
+  padding-top: 1.125rem;
+}
+
+.book-genre {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.35rem;
+}
+
+.book-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  margin-bottom: 0.3rem;
+}
+
+.book-author {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+.catalog-cta {
+  text-align: center;
+  margin-top: var(--space-md);
+}
+
+/* ----------------------------------------------------------------
+   11. Pull Quote
+---------------------------------------------------------------- */
+.pull-quote {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  background-color: var(--color-bg-alt);
+}
+
+.pull-quote-inner {
+  text-align: center;
+}
+
+.quote-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.45;
+  color: var(--color-text);
+  max-width: 38em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+}
+
+.quote-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+}
+
+.quote-attribution cite { font-style: normal; }
+
+/* ----------------------------------------------------------------
+   12. About Section
+---------------------------------------------------------------- */
+.about {
+  padding-top: var(--space-xxl);
+  padding-bottom: var(--space-xxl);
+}
+
+.about-inner { text-align: center; }
+
+.about-inner .section-heading {
+  margin-bottom: var(--space-md);
+}
+
+.about-body {
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--space-lg);
+  text-align: left;
+}
+
+.about-body p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--color-text);
+}
+
+.about-body p + p { margin-top: 1.5rem; }
+
+.about-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--space-lg);
+}
+
+.stat-item {
+  flex: 0 0 auto;
+  text-align: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid var(--color-rule);
+}
+
+.stat-number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ----------------------------------------------------------------
+   13. Submissions Section
+---------------------------------------------------------------- */
+.submissions {
+  background-color: var(--color-bg-alt);
+  border-top: 1px solid var(--color-rule);
+  border-bottom: 1px solid var(--color-rule);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.submissions-inner {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.submissions-text {
+  flex: 1 1 320px;
+  padding-right: 5rem;
+  margin-bottom: var(--space-md);
+}
+
+.submissions-text .section-heading { margin-bottom: 1.25rem; }
+.submissions-text .section-heading em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.submissions-body {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-bottom: var(--space-md);
+}
+
+.submissions-aside {
+  flex: 0 0 auto;
+  width: 280px;
+  margin-bottom: var(--space-md);
+}
+
+.submissions-note {
+  border-left: 2px solid var(--color-accent);
+  padding-left: 1.75rem;
+}
+
+.note-heading {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.note-list { list-style: none; }
+
+.note-list li {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  padding-top: 0.45rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.note-list li:last-child { border-bottom: none; }
+.note-list li em { font-style: italic; color: var(--color-text); }
+
+/* ----------------------------------------------------------------
+   13.5 Business Plan Download
+---------------------------------------------------------------- */
+.business-plan {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  text-align: center;
+  background-color: var(--color-bg); 
+  border-top: 1px solid var(--color-rule);
+}
+
+.plan-inner {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.business-plan .section-heading {
+  margin-bottom: 1rem;
+}
+
+.plan-body {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 52ch;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+
+.plan-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----------------------------------------------------------------
+   14. Footer
+---------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-bg);
+  border-top: 1px solid var(--color-rule);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-md);
+}
+
+.footer-newsletter {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--color-rule);
+}
+
+.footer-newsletter-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.footer-newsletter-sub {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.newsletter-input {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  color: var(--color-text);
+  background-color: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--color-rule);
+  outline: none;
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+  width: 300px;
+  margin-right: 1rem;
+  margin-bottom: 0.75rem;
+  transition: border-color var(--transition-base);
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+
+.newsletter-input::placeholder { color: var(--color-rule); }
+.newsletter-input:focus { border-bottom-color: var(--color-accent); }
+
+.newsletter-btn { margin-bottom: 0.75rem; }
+
+.form-consent {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+
+.footer-nav-col {
+  min-width: 160px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: var(--space-md);
+}
+
+.footer-nav-heading {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.footer-nav-col li { margin-bottom: 0.6rem; }
+
+.footer-nav-col a {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition-base);
+}
+
+.footer-nav-col a:hover { color: var(--color-text); }
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-rule);
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+.footer-brand {
+  font-family: var(--font-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.footer-legal {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
+.footer-legal a {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-left: 1.5rem;
+  transition: color var(--transition-base);
+}
+
+.footer-legal a:first-child { margin-left: 0; }
+.footer-legal a:hover { color: var(--color-text); }
+
+.footer-copy {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+  text-align: right;
+  flex-basis: 100%;
+}
+
+/* ----------------------------------------------------------------
+   15. Animations
+---------------------------------------------------------------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ----------------------------------------------------------------
+   16. Responsive — Tablet  (≤ 960px)
+   Hamburger appears; desktop nav links are hidden.
+---------------------------------------------------------------- */
+@media (max-width: 960px) {
+
+  /* Show hamburger, hide desktop nav links */
+  .nav-toggle { display: flex; }
+  .nav-links  { display: none; }
+
+  /* Logo gets slightly more room */
+  .brand {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: auto; /* push to left on tablet once nav links are gone */
+    margin-left: 0;
+  }
+
+  /* Book grid: 2 columns */
+  .book-card {
+    flex: 0 0 calc(50% - 2.5rem);
+    max-width: 260px;
+  }
+
+  /* Submissions: stack */
+  .submissions-text  { padding-right: 0; }
+  .submissions-aside { width: 100%; }
+
+  /* Stats: 2 × 2 grid */
+  .stat-item {
+    flex: 0 0 50%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .stat-item + .stat-item { border-left: none; }
+
+  /* 2×2 stat separators via nth-child borders */
+  .stat-item:nth-child(odd)  { border-right: 1px solid var(--color-rule); }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4)    { border-top: 1px solid var(--color-rule); padding-top: var(--space-md); }
+
+  .footer-bottom { flex-direction: column; align-items: flex-start; }
+  .footer-copy   { text-align: left; }
+}
+
+/* ----------------------------------------------------------------
+   17. Responsive — Mobile  (≤ 540px)
+---------------------------------------------------------------- */
+@media (max-width: 540px) {
+
+  /* Tighten hero */
+  .hero {
+    padding-top: calc(var(--nav-height) + 2rem);
+    padding-bottom: var(--space-xl);
+    min-height: auto;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.2rem, 11vw, 3.2rem);
+  }
+
+  .hero-subheadline { font-size: 1rem; }
+
+  /* Buttons stack */
+  .hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    max-width: 320px;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: center;
+  }
+
+  /* Logo smaller on small phones */
+  .brand-logo {
+    height: 38px;
+    max-width: 160px;
+  }
+
+  /* Book grid: single column */
+  .book-card {
+    flex: 0 0 calc(100% - 2.5rem);
+    max-width: 300px;
+  }
+
+  /* Stats: full width stack */
+  .stat-item {
+    flex: 0 0 100%;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid var(--color-rule);
+    padding-top: var(--space-sm);
+    padding-bottom: var(--space-sm);
+  }
+
+  .stat-item:last-child    { border-bottom: none; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4)  { border-top: none; padding-top: var(--space-sm); }
+  .stat-item:nth-child(odd) { border-right: none; }
+
+  /* Footer nav: centred */
+  .footer-nav { text-align: center; }
+
+  .footer-nav-col {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Newsletter form: stacked */
+  .form-row { flex-direction: column; align-items: center; }
+
+  .newsletter-input {
+    width: 100%;
+    max-width: 300px;
+    margin-right: 0;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  /* Quote smaller */
+  .quote-text { font-size: clamp(1.2rem, 5vw, 1.8rem); }
+}

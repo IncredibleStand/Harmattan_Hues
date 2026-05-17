@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harmattan Hues Publishing Ltd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       FULL-SCREEN MOBILE MENU OVERLAY
+  ============================================================ -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      <ul class="mobile-nav-list" role="list">
+        <li class="mobile-nav-item">
+          <a href="#catalog"     class="mobile-nav-link" data-close-menu>Catalog</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#about"       class="mobile-nav-link" data-close-menu>About</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#submissions" class="mobile-nav-link" data-close-menu>Submissions</a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#footer"      class="mobile-nav-link" data-close-menu>Authors</a>
+        </li>
+      </ul>
+      <div class="mobile-menu-footer">
+        <p class="mobile-menu-tagline">Amplifying the Voices of Tomorrow</p>
+        <p class="mobile-menu-address">Lagos &middot; London &middot; Est. 2026</p>
+      </div>
+    </nav>
+  </div>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <header class="site-header" id="top">
+    <nav class="nav-inner" aria-label="Main navigation">
+
+      <!-- Desktop left links -->
+      <ul class="nav-links nav-links--left" role="list">
+        <li><a href="#catalog" class="nav-link">Catalog</a></li>
+        <li><a href="#about"   class="nav-link">About</a></li>
+      </ul>
+
+      <!-- Logo -->
+      <a href="#" class="brand" aria-label="Harmattan Hues Publishing — home">
+        <img
+          src="logo-transparent.webp"
+          alt="Harmattan Hues Publishing Ltd"
+          class="brand-logo"
+        />
+      </a>
+
+      <!-- Desktop right links -->
+      <ul class="nav-links nav-links--right" role="list">
+        <li><a href="#submissions" class="nav-link">Submissions</a></li>
+        <li><a href="#footer"      class="nav-link">Authors</a></li>
+      </ul>
+
+      <!-- Hamburger toggle -->
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        type="button"
+      >
+        <span class="nav-toggle-bar bar-top"></span>
+        <span class="nav-toggle-bar bar-mid"></span>
+        <span class="nav-toggle-bar bar-bot"></span>
+      </button>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-headline">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">Est. 2026 &middot; Lagos &amp; London</p>
+        <h1 class="hero-headline" id="hero-headline">
+          Amplifying&nbsp;the<br />
+          <em>Voices of Tomorrow</em>
+        </h1>
+        <p class="hero-subheadline">
+          We seek and publish stories that endure — rooted in African literary
+          tradition, shaped by the world we are becoming.
+        </p>
+        <div class="hero-actions">
+          <a href="#catalog"     class="btn btn--primary">Explore the Catalog</a>
+          <a href="#submissions" class="btn btn--ghost">Submit a Manuscript</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         MARQUEE / GENRE STRIP
+    ============================================================ -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Literary Fiction</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Afrofuturism</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Narrative Non-Fiction</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Poetry Collections</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Young Adult</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Debut Fiction</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Short Story Anthologies</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Literary Fiction</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Afrofuturism</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Narrative Non-Fiction</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Poetry Collections</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Young Adult</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Debut Fiction</span>
+        <span class="marquee-dot">&middot;</span>
+        <span>Short Story Anthologies</span>
+        <span class="marquee-dot">&middot;</span>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         FEATURED CATALOG
+    ============================================================ -->
+    <section class="catalog" id="catalog" aria-labelledby="catalog-heading">
+      <div class="section-header">
+        <p class="section-eyebrow">Current Season</p>
+        <h2 class="section-heading" id="catalog-heading">Featured Titles</h2>
+        <p class="section-sub">
+          A curated selection from our Spring catalogue — each one a world
+          patient enough to wait for the right reader.
+        </p>
+      </div>
+
+      <div class="book-grid">
+
+        <article class="book-card">
+          <div class="book-cover" style="background-color:#3B2F2F;" aria-hidden="true">
+            <div class="cover-texture"></div>
+            <span class="cover-ornament">&#10022;</span>
+          </div>
+          <div class="book-meta">
+            <span class="book-genre">Literary Fiction</span>
+            <h3 class="book-title">The Harmattan Bride</h3>
+            <p class="book-author">Adaeze Chukwuemeka</p>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="background-color:#5C4B35;" aria-hidden="true">
+            <div class="cover-texture"></div>
+            <span class="cover-ornament">&#9672;</span>
+          </div>
+          <div class="book-meta">
+            <span class="book-genre">Afrofuturism</span>
+            <h3 class="book-title">Lagoon Protocol</h3>
+            <p class="book-author">Kofi Mensah-Addo</p>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="background-color:#6B4E3D;" aria-hidden="true">
+            <div class="cover-texture"></div>
+            <span class="cover-ornament">&#9671;</span>
+          </div>
+          <div class="book-meta">
+            <span class="book-genre">Poetry Collection</span>
+            <h3 class="book-title">Dust &amp; Divinity</h3>
+            <p class="book-author">Amara Nwosu</p>
+          </div>
+        </article>
+
+        <article class="book-card">
+          <div class="book-cover" style="background-color:#2A3A3A;" aria-hidden="true">
+            <div class="cover-texture"></div>
+            <span class="cover-ornament">&#8853;</span>
+          </div>
+          <div class="book-meta">
+            <span class="book-genre">Narrative Non-Fiction</span>
+            <h3 class="book-title">Rivers We Cannot Cross</h3>
+            <p class="book-author">Emeka Osei-Bonsu</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="catalog-cta">
+        <a href="#" class="btn btn--outline">View Full Catalog</a>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PULL QUOTE
+    ============================================================ -->
+    <section class="pull-quote" aria-label="Editorial philosophy">
+      <div class="pull-quote-inner">
+        <blockquote>
+          <p class="quote-text">
+            &#8220;Every manuscript that arrives in our hands carries an entire
+            world inside it. Our only job is to help it breathe.&#8221;
+          </p>
+          <footer class="quote-attribution">
+            <cite>&mdash; Chidinma Okafor, Founder &amp; Editor-in-Chief</cite>
+          </footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         ABOUT
+    ============================================================ -->
+    <section class="about" id="about" aria-labelledby="about-heading">
+      <div class="about-inner">
+        <p class="section-eyebrow">Our Story</p>
+        <h2 class="section-heading" id="about-heading">
+          Rooted in Story,<br />Open to the World
+        </h2>
+
+        <div class="about-body">
+          <p>
+            Harmattan Hues Publishing was founded on a single conviction: that
+            African storytelling — in all its richness, plurality, and radical
+            humanity — deserves a home built with the same care as the stories
+            themselves. We are an independent publisher operating from Lagos and
+            London, dedicated to debut and established authors whose work sits
+            at the intersection of tradition and transformation.
+          </p>
+          <p>
+            We do not chase trends. We look for language that slows you down,
+            for characters you will carry long after you close the cover, for
+            narratives that refuse the easy resolution. If your work demands
+            patience from a reader and repays it generously, we want to hear
+            from you.
+          </p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-item">
+            <span class="stat-number">120+</span>
+            <span class="stat-label">Titles Published</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">34</span>
+            <span class="stat-label">Award Nominations</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">18</span>
+            <span class="stat-label">Countries Distributed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SUBMISSIONS
+    ============================================================ -->
+    <section class="submissions" id="submissions" aria-labelledby="submissions-heading">
+      <div class="submissions-inner">
+        <div class="submissions-text">
+          <p class="section-eyebrow">Open Submissions</p>
+          <h2 class="section-heading" id="submissions-heading">
+            Send Us Your<br /><em>Manuscript</em>
+          </h2>
+          <p class="submissions-body">
+            We read every query with genuine attention. We are currently open
+            to literary fiction, debut novels, and narrative non-fiction
+            across the African diaspora. Full guidelines are on our submissions
+            page.
+          </p>
+          <a href="#" class="btn btn--primary">Read Submission Guidelines</a>
+        </div>
+        <div class="submissions-aside">
+          <div class="submissions-note">
+            <h3 class="note-heading">What We Look For</h3>
+            <ul class="note-list" role="list">
+              <li>Distinctive, necessary voice</li>
+              <li>Work that earns its silences</li>
+              <li>A story only <em>you</em> can tell</li>
+              <li>Patience on the page</li>
+              <li>Emotional precision</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="business-plan" aria-labelledby="plan-heading">
+      <div class="plan-inner reveal">
+        <h2 class="section-heading" id="plan-heading">Read Our Full Blueprint</h2>
+        <p class="plan-body">
+          For a comprehensive look at our operational model, editorial philosophy, 
+          and financial projections, you can download our complete business plan.
+        </p>
+        <div class="plan-actions">
+          <a href="harmattan_hues_business_plan.pdf" class="btn btn--primary" download>
+            Download Business Plan (PDF)
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" id="footer">
+    <div class="footer-inner">
+
+      <div class="footer-newsletter">
+        <h2 class="footer-newsletter-heading">Stay in the Conversation</h2>
+        <p class="footer-newsletter-sub">
+          New titles, author essays, and occasional letters from the editorial desk.
+        </p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();" novalidate>
+          <label for="email-input" class="sr-only">Your email address</label>
+          <div class="form-row">
+            <input
+              type="email"
+              id="email-input"
+              name="email"
+              class="newsletter-input"
+              placeholder="your@email.com"
+              autocomplete="email"
+              required
+            />
+            <button type="submit" class="btn btn--primary newsletter-btn">Subscribe</button>
+          </div>
+          <p class="form-consent">
+            No noise. Unsubscribe anytime. We do not share your details.
+          </p>
+        </form>
+      </div>
+
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-nav-col">
+          <p class="footer-nav-heading">Discover</p>
+          <ul role="list">
+            <li><a href="#">New Releases</a></li>
+            <li><a href="#">Bestsellers</a></li>
+            <li><a href="#">Anthologies</a></li>
+            <li><a href="#">Poetry</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-heading">Authors</p>
+          <ul role="list">
+            <li><a href="#">Our Authors</a></li>
+            <li><a href="#">Author Events</a></li>
+            <li><a href="#">Reading Groups</a></li>
+            <li><a href="#">Rights &amp; Licensing</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <p class="footer-nav-heading">Company</p>
+          <ul role="list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer-bottom">
+        <p class="footer-brand">Harmattan Hues Publishing Ltd</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Use</a>
+          <a href="#">Cookie Settings</a>
+        </div>
+        <p class="footer-copy">
+          &copy; <span id="footer-year"></span> Harmattan Hues Publishing Ltd - All rights reserved.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    (function () {
+
+      /* ── Dynamic footer year ─────────────────────────────── */
+      var yearEl = document.getElementById('footer-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      /* ── Scrolled header border ──────────────────────────── */
+      var header = document.querySelector('.site-header');
+      window.addEventListener('scroll', function () {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      }, { passive: true });
+
+      /* ── Hamburger / full-screen mobile menu ─────────────── */
+      var toggle     = document.getElementById('nav-toggle');
+      var menu       = document.getElementById('mobile-menu');
+      var closeLinks = document.querySelectorAll('[data-close-menu]');
+      var isOpen     = false;
+
+      function openMenu() {
+        isOpen = true;
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.setAttribute('aria-label', 'Close navigation menu');
+        menu.setAttribute('aria-hidden', 'false');
+        menu.classList.add('is-open');
+        toggle.classList.add('is-open');
+        document.body.classList.add('menu-open');
+      }
+
+      function closeMenu() {
+        isOpen = false;
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Open navigation menu');
+        menu.setAttribute('aria-hidden', 'true');
+        menu.classList.remove('is-open');
+        toggle.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+      }
+
+      toggle.addEventListener('click', function () {
+        isOpen ? closeMenu() : openMenu();
+      });
+
+      closeLinks.forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && isOpen) closeMenu();
+      });
+
+      /* ── Scroll-reveal (IntersectionObserver) ────────────── */
+      var revealSelectors = [
+        '.section-header',
+        '.book-card',
+        '.pull-quote-inner',
+        '.about-inner',
+        '.submissions-inner',
+        '.plan-inner',
+        '.footer-newsletter',
+        '.stat-item',
+      ];
+
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        revealSelectors.forEach(function (sel) {
+          document.querySelectorAll(sel).forEach(function (el) {
+            el.classList.add('reveal');
+            observer.observe(el);
+          });
+        });
+      }
+
+    })();
+  </script>
+</body>
+</html>
